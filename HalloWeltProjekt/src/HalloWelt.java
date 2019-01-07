@@ -78,6 +78,8 @@ public class HalloWelt {
 		System.out.println(doubleVariable);
 		System.out.println(Double.MIN_VALUE);
 		System.out.println(Double.MAX_VALUE);
+		
+	
 
 	}
 }
