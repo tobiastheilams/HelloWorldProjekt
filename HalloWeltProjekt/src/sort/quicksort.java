@@ -11,6 +11,7 @@ public class quicksort {
 		for (int i = 0; i < zahlen.length; i++) {
 			System.out.println(zahlen[i]);
 		}
+		System.out.println("---------------");
 		//
 		quicksort(links, rechts);
 		//
@@ -23,13 +24,12 @@ public class quicksort {
 
 		if (links < rechts) {
 			int teiler = teile(links, rechts);
-			quicksort(links, teiler-1);
-			quicksort(teiler+1, rechts);
+			quicksort(links, teiler - 1);
+			quicksort(teiler + 1, rechts);
+
 		}
-		
-		
+
 	}
-	
 
 	public static int teile(int links, int rechts) {
 		int i = links;
@@ -38,11 +38,11 @@ public class quicksort {
 
 		do {
 			while (i < rechts - 1 && zahlen[i] < pivot) {
-				i = i + i;
+				i = i + 1;
 			}
 
-			while (j > links && zahlen[i] >= pivot) {
-				j = j - j;
+			while (j > links && zahlen[j] >= pivot) {
+				j = j - 1;
 			}
 			if (i < j) {
 				int help = zahlen[i];
