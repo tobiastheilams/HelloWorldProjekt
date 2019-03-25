@@ -3,7 +3,8 @@ package sort;
 public class quicksort {
 
 	static int[] zahlen = { 9, 2, 5, 1, 7, 10, 6, 4, 3 };
-
+	//static int[] zahlen = { 9, 2, 5, 1, 10, 7, 4, 6, 3 };  mit der Reihenfolge der Zahlen funktioniert es nicht. NICE
+	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		int links = 0;
