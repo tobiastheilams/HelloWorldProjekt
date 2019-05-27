@@ -78,7 +78,7 @@ public class Myfirstwindow {
 			public void mouseMove(MouseEvent me) {
 				// System.out.println("Maus ¸ber Knopf bewegt");
 				//
-				//System.out.println("Maus auf: " + me.x + "/" + me.y);
+				// System.out.println("Maus auf: " + me.x + "/" + me.y);
 			}
 		});
 		button1.addSelectionListener(new SelectionAdapter() {
@@ -168,7 +168,7 @@ public class Myfirstwindow {
 		HausnummerOut = new Label(shlFrWindow, SWT.NONE);
 		HausnummerOut.setBounds(267, 230, 55, 15);
 		HausnummerOut.setText("");
-		
+
 		Button btnSaveClean = new Button(shlFrWindow, SWT.NONE);
 		btnSaveClean.addSelectionListener(new SelectionAdapter() {
 			@Override
@@ -183,9 +183,24 @@ public class Myfirstwindow {
 				p.setStraﬂe(getStraﬂeTF().getText());
 				p.setHausnummer(getHausnummerTF().getText());
 				//
+				System.out.println("------------");
+				System.out.println("Objekt");
 				System.out.println(p);
-				
-				
+				//
+				Person.getPersonenListe().add(p);
+				//
+				System.out.println("------------");
+				System.out.println("Liste");
+				System.out.println(Person.getPersonenListe());
+				//
+				// finally clean fields
+				getVornameTF().setText("");
+				getNachnameTF().setText("");
+				getPLZTF().setText("");
+				getOrtTF().setText("");
+				getStraﬂeTF().setText("");
+				getHausnummerTF().setText("");
+				//
 			}
 		});
 		btnSaveClean.setBounds(178, 21, 89, 25);
@@ -216,21 +231,27 @@ public class Myfirstwindow {
 	public Label getHausnummerOut() {
 		return HausnummerOut;
 	}
+
 	public Text getHausnummerTF() {
 		return HausnummerTF;
 	}
+
 	public Text getStraﬂeTF() {
 		return StraﬂeTF;
 	}
+
 	public Text getOrtTF() {
 		return OrtTF;
 	}
+
 	public Text getPLZTF() {
 		return PLZTF;
 	}
+
 	public Text getNachnameTF() {
 		return NachnameTF;
 	}
+
 	public Text getVornameTF() {
 		return VornameTF;
 	}

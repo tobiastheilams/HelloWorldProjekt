@@ -1,6 +1,17 @@
 package Data;
 
+import java.util.ArrayList;
+
 public class Person {
+	
+	private static ArrayList<Person> personenListe = new ArrayList<>();
+	
+		
+	
+
+	public static ArrayList<Person> getPersonenListe() {
+		return personenListe;
+	}
 
 	private String vorname;
 	private String nachname;
@@ -56,11 +67,12 @@ public class Person {
 	public void setHausnummer(String hausnummer) {
 		this.hausnummer = hausnummer;
 	}
+
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
-		return getNachname() + ", " + getVorname() + "" + " (" + getPlz() + " " + getOrt() + ", " + getStraﬂe() + " " + getHausnummer() + ")";
-		
-		
+		return getNachname() + ", " + getVorname() + "" + " (" + getPlz() + " " + getOrt() + ", " + getStraﬂe() + " "
+				+ getHausnummer() + ")";
+
 	}
 }
