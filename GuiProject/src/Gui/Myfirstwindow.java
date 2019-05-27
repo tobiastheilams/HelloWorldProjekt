@@ -3,12 +3,19 @@ package Gui;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Button;
+
+import java.io.File;
+import java.io.FileWriter;
+
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.MouseMoveListener;
 import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.widgets.Text;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import Data.Person;
 
@@ -205,6 +212,32 @@ public class Myfirstwindow {
 		});
 		btnSaveClean.setBounds(178, 21, 89, 25);
 		btnSaveClean.setText("Save and Clean");
+		
+		Button btnNewButton = new Button(shlFrWindow, SWT.NONE);
+		btnNewButton.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				Gson gson = new GsonBuilder().setPrettyPrinting().create();
+				gson.serializeNulls();
+				//
+				String jsonString = gson.toJson(Person.getPersonenListe());
+				System.out.println(jsonString);
+				//
+			try {
+				FileWriter fw = new FileWriter(File.createTempFile("wpfjson", " .json"));
+				//
+		       gson.toJson(Person.getPersonenListe(),fw);
+		       //
+		       fw.flush();
+		       fw.close();
+		       
+			} catch (Exception ex) {
+				
+			}
+			}
+		});
+		btnNewButton.setBounds(299, 7, 89, 53);
+		btnNewButton.setText("to Json");
 
 	}
 

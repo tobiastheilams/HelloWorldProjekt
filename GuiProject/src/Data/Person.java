@@ -2,16 +2,13 @@ package Data;
 
 import java.util.ArrayList;
 
+import com.google.gson.JsonElement;
+
 public class Person {
 	
 	private static ArrayList<Person> personenListe = new ArrayList<>();
-	
 		
 	
-
-	public static ArrayList<Person> getPersonenListe() {
-		return personenListe;
-	}
 
 	private String vorname;
 	private String nachname;
@@ -74,5 +71,10 @@ public class Person {
 		return getNachname() + ", " + getVorname() + "" + " (" + getPlz() + " " + getOrt() + ", " + getStraﬂe() + " "
 				+ getHausnummer() + ")";
 
+	}
+
+	public static JsonElement getPersonenListe() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
