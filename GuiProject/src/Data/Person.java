@@ -73,8 +73,9 @@ public class Person {
 
 	}
 
-	public static JsonElement getPersonenListe() {
-		// TODO Auto-generated method stub
-		return null;
+	public static ArrayList<Person> getPersonenListe() {
+		return personenListe;
 	}
+
+	
 }
