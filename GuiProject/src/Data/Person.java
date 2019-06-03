@@ -1,14 +1,18 @@
 package Data;
 
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.nio.file.FileSystemNotFoundException;
 import java.util.ArrayList;
+import java.util.Arrays;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
 
 public class Person {
-	
+
 	private static ArrayList<Person> personenListe = new ArrayList<>();
-		
-	
 
 	private String vorname;
 	private String nachname;
@@ -76,6 +80,25 @@ public class Person {
 	public static ArrayList<Person> getPersonenListe() {
 		return personenListe;
 	}
+	//
 
-	
+	public static void loadPersonenFromFile(String filename) {
+
+		Gson gson = new GsonBuilder().setPrettyPrinting().create();
+		gson.serializeNulls();
+		//
+		FileReader fr;
+		//
+		try {
+			fr = new FileReader(filename);
+			//
+
+			Person[] personen = gson.fromJson(fr, Person[].class);
+			personenListe = new ArrayList<Person>(Arrays.asList(personen));
+			System.out.println(gson.toJson(personenListe));
+		} catch (FileNotFoundException e) {
+		}
+		//
+	}
+
 }

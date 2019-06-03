@@ -1,10 +1,12 @@
 package Gui;
 
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Button;
 
 import java.io.File;
+import java.io.FileDescriptor;
 import java.io.FileWriter;
 
 import org.eclipse.swt.SWT;
@@ -157,23 +159,23 @@ public class Myfirstwindow {
 		HausnummerTF.setBounds(103, 227, 76, 21);
 
 		VornameOut = new Label(shlFrWindow, SWT.NONE);
-		VornameOut.setBounds(267, 80, 55, 15);
+		VornameOut.setBounds(244, 80, 55, 15);
 
 		NachnameOut = new Label(shlFrWindow, SWT.NONE);
-		NachnameOut.setBounds(267, 107, 55, 15);
+		NachnameOut.setBounds(244, 107, 55, 15);
 
 		PLZOut = new Label(shlFrWindow, SWT.NONE);
-		PLZOut.setBounds(267, 138, 55, 15);
+		PLZOut.setBounds(244, 138, 55, 15);
 
 		OrtOut = new Label(shlFrWindow, SWT.NONE);
-		OrtOut.setBounds(267, 172, 55, 15);
+		OrtOut.setBounds(244, 172, 55, 15);
 		OrtOut.setText("");
 
 		StraﬂeOut = new Label(shlFrWindow, SWT.NONE);
-		StraﬂeOut.setBounds(267, 203, 107, 15);
+		StraﬂeOut.setBounds(244, 203, 107, 15);
 
 		HausnummerOut = new Label(shlFrWindow, SWT.NONE);
-		HausnummerOut.setBounds(267, 230, 55, 15);
+		HausnummerOut.setBounds(244, 230, 55, 15);
 		HausnummerOut.setText("");
 
 		Button btnSaveClean = new Button(shlFrWindow, SWT.NONE);
@@ -213,8 +215,8 @@ public class Myfirstwindow {
 		btnSaveClean.setBounds(178, 21, 89, 25);
 		btnSaveClean.setText("Save and Clean");
 		
-		Button btnNewButton = new Button(shlFrWindow, SWT.NONE);
-		btnNewButton.addSelectionListener(new SelectionAdapter() {
+		Button WRITE = new Button(shlFrWindow, SWT.NONE);
+		WRITE.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				Gson gson = new GsonBuilder().setPrettyPrinting().create();
@@ -223,8 +225,17 @@ public class Myfirstwindow {
 				String jsonString = gson.toJson(Person.getPersonenListe());
 				System.out.println(jsonString);
 				//
+				FileDialog fd2 = new FileDialog(shlFrWindow, SWT.SAVE);
+				fd2.setFilterPath(System.getProperty("java.io.tmpdir"));
+				fd2.setFilterNames(new String[] { "WPF-INF-Json" });
+				fd2.setFilterExtensions(new String[] { "*.json" });
+				String fileName = fd2.open();
+				System.out.println(fileName);
+				//
+				//
 			try {
-				FileWriter fw = new FileWriter(File.createTempFile("wpfjson", " .json"));
+				//FileWriter fw = new FileWriter(File.createTempFile("wpfjson", " .json"));
+				FileWriter fw = new FileWriter(fileName);
 				//
 		       gson.toJson(Person.getPersonenListe(),fw);
 		       //
@@ -236,8 +247,31 @@ public class Myfirstwindow {
 			}
 			}
 		});
-		btnNewButton.setBounds(299, 7, 89, 53);
-		btnNewButton.setText("to Json");
+		WRITE.setBounds(313, 14, 75, 39);
+		WRITE.setText("to Json");
+		
+		Button READ = new Button(shlFrWindow, SWT.NONE);
+		READ.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				FileDialog fd = new FileDialog(shlFrWindow, SWT.OPEN);
+				fd.setFilterPath(System.getProperty("java.io.tmpdir"));
+				fd.setFilterNames(new String[] { "WPF-INF-Json" });
+				fd.setFilterExtensions(new String[] { "*.json" });
+				//
+				//
+				String fileName = fd.open();
+				System.out.println(fileName);
+				//
+				if (fileName != null) {
+					// filename ausgew‰hlt
+				Person.loadPersonenFromFile(fileName);
+				}
+			
+			}
+		});
+		READ.setBounds(313, 68, 75, 39);
+		READ.setText("from Json");
 
 	}
 
